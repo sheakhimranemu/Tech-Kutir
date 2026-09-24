@@ -1,320 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Tech Kutir AI">
 
-  <title>TECH KUTIR AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tech Kutir AI">
+
+<title>TECH KUTIR AI</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background:#f7f7f7;
+    color:#111;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+}
+
+.app{
+    width:100%;
+    max-width:1200px;
+    min-height:100vh;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+    height:72px;
+    border-bottom:1px solid #e8e8e8;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand-mark{
+    width:38px;
+    height:38px;
+    background:#111;
+    color:#fff;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    font-weight:800;
+}
+
+.brand-text{
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:.8px;
+}
+
+.brand-text span{
+    display:block;
+    font-size:10px;
+    font-weight:500;
+    color:#777;
+    letter-spacing:1.5px;
+    margin-top:2px;
+}
+
+.header-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:10px;
+    padding:9px 15px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.header-btn:hover{
+    background:#f5f5f5;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    flex:1;
+    width:100%;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome-section{
+    padding:70px 25px 45px;
+    text-align:center;
+    background:
+        radial-gradient(circle at 50% 0%, #eeeeee 0, #fff 45%);
+}
+
+.small-label{
+    display:inline-block;
+    padding:7px 13px;
+    border:1px solid #dedede;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.2px;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+.welcome-section h1{
+    font-size:48px;
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-1.5px;
+}
+
+.welcome-section h1 span{
+    color:#777;
+}
+
+.welcome-section p{
+    max-width:620px;
+    margin:17px auto 0;
+    color:#707070;
+    font-size:15px;
+    line-height:1.7;
+}
+
+/* ================= QUICK CARDS ================= */
+
+.quick-actions{
+    max-width:850px;
+    margin:30px auto 0;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.action-card{
+    border:1px solid #e3e3e3;
+    background:#fff;
+    border-radius:15px;
+    padding:18px 12px;
+    cursor:pointer;
+    transition:.2s;
+    text-align:left;
+}
+
+.action-card:hover{
+    transform:translateY(-2px);
+    border-color:#bbb;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.action-icon{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.action-title{
+    font-size:13px;
+    font-weight:700;
+}
+
+.action-sub{
+    font-size:11px;
+    color:#888;
+    margin-top:4px;
+}
+
+/* ================= CHAT ================= */
+
+.chat-wrapper{
+    width:100%;
+    max-width:900px;
+    margin:20px auto 0;
+    padding:0 20px;
+}
+
+.chat{
+    min-height:100px;
+    max-height:520px;
+    overflow-y:auto;
+    padding:10px 5px 20px;
+    scroll-behavior:smooth;
+}
+
+.message{
+    max-width:78%;
+    padding:13px 16px;
+    margin:10px 0;
+    border-radius:16px;
+    line-height:1.6;
+    font-size:15px;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
+.message.user{
+    margin-left:auto;
+    background:#111;
+    color:#fff;
+    border-bottom-right-radius:5px;
+}
+
+.message.ai{
+    margin-right:auto;
+    background:#f2f2f2;
+    color:#171717;
+    border-bottom-left-radius:5px;
+}
+
+.thinking{
+    color:#777;
+    font-style:italic;
+}
+
+/* ================= INPUT ================= */
+
+.input-box{
+    max-width:900px;
+    margin:0 auto;
+    padding:10px 20px 5px;
+}
+
+.input-container{
+    border:1px solid #dcdcdc;
+    border-radius:17px;
+    padding:8px;
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    background:#fff;
+    box-shadow:0 5px 25px rgba(0,0,0,.05);
+}
+
+textarea{
+    flex:1;
+    border:0;
+    outline:none;
+    resize:none;
+    min-height:44px;
+    max-height:130px;
+    padding:12px 10px;
+    font-size:15px;
+    font-family:inherit;
+    background:transparent;
+}
+
+.send-btn{
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:13px;
+    background:#111;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.send-btn:hover{
+    background:#333;
+}
+
+.send-btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+.input-note{
+    text-align:center;
+    color:#999;
+    font-size:10px;
+    padding:8px 0 12px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    border-top:1px solid #e8e8e8;
+    padding:24px 20px;
+    text-align:center;
+    background:#fafafa;
+}
+
+.footer-brand{
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.footer-text{
+    color:#888;
+    font-size:11px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+.footer-copy{
+    color:#aaa;
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    .topbar{
+        height:62px;
+        padding:0 15px;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #f7f7f8;
-      color: #222;
+    .brand-mark{
+        width:34px;
+        height:34px;
+        font-size:15px;
     }
 
-    body {
-      display: flex;
-      justify-content: center;
+    .brand-text{
+        font-size:15px;
     }
 
-    .app {
-      width: 100%;
-      max-width: 760px;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
+    .header-btn{
+        padding:8px 11px;
+        font-size:11px;
     }
 
-    header {
-      padding: 18px 15px;
-      text-align: center;
-      border-bottom: 1px solid #e5e5e5;
-      background: #ffffff;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: 1px;
+    .welcome-section{
+        padding:48px 18px 25px;
     }
 
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 18px 14px;
-      -webkit-overflow-scrolling: touch;
+    .welcome-section h1{
+        font-size:34px;
     }
 
-    .message {
-      max-width: 86%;
-      padding: 12px 15px;
-      margin-bottom: 14px;
-      border-radius: 15px;
-      line-height: 1.55;
-      font-size: 16px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+    .welcome-section p{
+        font-size:13px;
     }
 
-    .user {
-      margin-left: auto;
-      background: #e9eefc;
-      border-bottom-right-radius: 5px;
+    .quick-actions{
+        grid-template-columns:repeat(2,1fr);
+        padding:0 15px;
+        gap:9px;
     }
 
-    .ai {
-      margin-right: auto;
-      background: #f1f1f1;
-      border-bottom-left-radius: 5px;
+    .action-card{
+        padding:15px 12px;
     }
 
-    .welcome {
-      text-align: center;
-      margin: 35px auto;
-      color: #777;
-      line-height: 1.7;
+    .chat-wrapper{
+        padding:0 12px;
     }
 
-    .welcome strong {
-      color: #222;
-      font-size: 19px;
+    .input-box{
+        padding:8px 10px 3px;
     }
 
-    .input-area {
-      display: flex;
-      gap: 8px;
-      padding: 10px;
-      border-top: 1px solid #e5e5e5;
-      background: #fff;
+    .message{
+        max-width:88%;
+        font-size:14px;
     }
 
-    textarea {
-      flex: 1;
-      min-width: 0;
-      height: 48px;
-      resize: none;
-      border: 1px solid #d5d5d5;
-      border-radius: 13px;
-      padding: 12px;
-      font-size: 16px;
-      outline: none;
-      font-family: inherit;
+}
+
+/* ================= SMALL IPHONE ================= */
+
+@media(max-width:390px){
+
+    .welcome-section h1{
+        font-size:30px;
     }
 
-    textarea:focus {
-      border-color: #999;
+    .welcome-section{
+        padding-top:35px;
     }
 
-    #send {
-      width: 72px;
-      border: none;
-      border-radius: 13px;
-      background: #111;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
+    .action-card{
+        padding:13px 10px;
     }
 
-    #send:disabled {
-      opacity: 0.5;
+    .action-title{
+        font-size:12px;
     }
 
-    .new-chat {
-      margin: 9px 10px 0;
-      height: 38px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: #fafafa;
-      font-weight: 600;
-      cursor: pointer;
-    }
+}
 
-    footer {
-      text-align: center;
-      padding: 9px 5px 12px;
-      font-size: 12px;
-      color: #888;
-      border-top: 1px solid #eee;
-      background: #fff;
-    }
+</style>
 
-    footer strong {
-      color: #555;
-    }
-
-    @media (max-width: 500px) {
-      header {
-        font-size: 19px;
-      }
-
-      .message {
-        max-width: 91%;
-      }
-
-      #send {
-        width: 65px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header>
-      TECH KUTIR AI
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                TK
+            </div>
+
+            <div class="brand-text">
+                TECH KUTIR AI
+                <span>AI ASSISTANT</span>
+            </div>
+
+        </div>
+
+        <button class="header-btn" id="newChat">
+            + New Chat
+        </button>
+
     </header>
 
-    <button class="new-chat" id="newChat">
-      New Chat
-    </button>
 
-    <div id="chat">
-      <div class="welcome">
-        <strong>Welcome to Tech Kutir AI</strong><br>
-        Ask me anything.
-      </div>
-    </div>
+    <main class="main">
 
-    <div class="input-area">
-      <textarea
-        id="message"
-        placeholder="Type your message..."
-        autocomplete="off"
-      ></textarea>
+        <!-- WELCOME -->
 
-      <button id="send">
-        SEND
-      </button>
-    </div>
+        <section class="welcome-section" id="welcome">
 
-    <footer>
-      Designed &amp; Developed by <strong>Sheakh Imran</strong><br>
-      © 2026 Tech Kutir
+            <div class="small-label">
+                ✦ POWERED BY GEMINI
+            </div>
+
+            <h1>
+                Everything You Need,<br>
+                <span>Powered by AI.</span>
+            </h1>
+
+            <p>
+                Welcome to Tech Kutir AI. Ask questions, create ideas,
+                write content and explore the power of artificial intelligence.
+            </p>
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="quick-actions">
+
+                <div class="action-card" data-prompt="Explain something to me in a simple way.">
+
+                    <div class="action-icon">✦</div>
+
+                    <div class="action-title">
+                        Ask AI
+                    </div>
+
+                    <div class="action-sub">
+                        Ask anything
+                    </div>
+
+                </div>
+
+
+                <div class="action-card" data-prompt="Help me write something professionally.">
+
+                    <div class="action-icon">✎</div>
+
+                    <div class="action-title">
+                        Write
+                    </div>
+
+                    <div class="action-sub">
+                        Create content
+                    </div>
+
+                </div>
+
+
+                <div class="action-card" data-prompt="Translate the following text and explain the translation clearly.">
+
+                    <div class="action-icon">文</div>
+
+                    <div class="action-title">
+                        Translate
+                    </div>
+
+                    <div class="action-sub">
+                        Any language
+                    </div>
+
+                </div>
+
+
+                <div class="action-card" data-prompt="Give me some creative ideas for my project.">
+
+                    <div class="action-icon">✧</div>
+
+                    <div class="action-title">
+                        Create
+                    </div>
+
+                    <div class="action-sub">
+                        Get creative ideas
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHAT -->
+
+        <section class="chat-wrapper">
+
+            <div class="chat" id="chat">
+
+            </div>
+
+        </section>
+
+
+        <!-- INPUT -->
+
+        <section class="input-box">
+
+            <div class="input-container">
+
+                <textarea
+                    id="message"
+                    placeholder="Message Tech Kutir AI..."
+                    rows="1"
+                ></textarea>
+
+                <button
+                    class="send-btn"
+                    id="send"
+                    aria-label="Send"
+                >
+                    ↑
+                </button>
+
+            </div>
+
+            <div class="input-note">
+                Tech Kutir AI can make mistakes. Please verify important information.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            TECH KUTIR
+        </div>
+
+        <div class="footer-text">
+            Designed &amp; Developed by <strong>Sheakh Imran</strong>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 Tech Kutir. All Rights Reserved.
+        </div>
+
     </footer>
 
-  </div>
+</div>
+
 
 <script>
 
+/* ================= API ================= */
+
 const API_URL =
-  "https://techkutir-ai-api.sheakhimranemu.workers.dev/";
+"https://techkutir-ai-api.sheakhimranemu.workers.dev/";
 
-const chat = document.getElementById("chat");
-const message = document.getElementById("message");
-const send = document.getElementById("send");
-const newChat = document.getElementById("newChat");
 
-function addMessage(text, type) {
+/* ================= ELEMENTS ================= */
 
-  const div = document.createElement("div");
+const chat =
+document.getElementById("chat");
 
-  div.className = "message " + type;
-  div.textContent = text;
+const message =
+document.getElementById("message");
 
-  chat.appendChild(div);
+const send =
+document.getElementById("send");
 
-  chat.scrollTop = chat.scrollHeight;
+const newChat =
+document.getElementById("newChat");
+
+const welcome =
+document.getElementById("welcome");
+
+
+/* ================= ADD MESSAGE ================= */
+
+function addMessage(text,type){
+
+    const div =
+    document.createElement("div");
+
+    div.className =
+    "message " + type;
+
+    div.textContent =
+    text;
+
+    chat.appendChild(div);
+
+    chat.scrollTop =
+    chat.scrollHeight;
 }
 
-async function sendMessage() {
 
-  const text = message.value.trim();
+/* ================= SEND MESSAGE ================= */
 
-  if (!text || send.disabled) {
-    return;
-  }
+async function sendMessage(){
 
-  addMessage(text, "user");
+    const text =
+    message.value.trim();
 
-  message.value = "";
-  send.disabled = true;
-  send.textContent = "...";
-
-  const loading = document.createElement("div");
-  loading.className = "message ai";
-  loading.textContent = "Thinking...";
-  chat.appendChild(loading);
-
-  chat.scrollTop = chat.scrollHeight;
-
-  try {
-
-    const response = await fetch(API_URL, {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        message: text
-      })
-    });
-
-    const data = await response.json();
-
-    loading.remove();
-
-    if (!response.ok) {
-      addMessage(
-        "Error: " + (data.error || "Something went wrong."),
-        "ai"
-      );
-    } else {
-      addMessage(
-        data.reply || "No response received.",
-        "ai"
-      );
+    if(!text || send.disabled){
+        return;
     }
 
-  } catch (error) {
+    addMessage(text,"user");
 
-    loading.remove();
+    message.value = "";
 
-    addMessage(
-      "Connection error. Please try again.",
-      "ai"
-    );
+    message.style.height = "44px";
 
-  }
+    send.disabled = true;
 
-  send.disabled = false;
-  send.textContent = "SEND";
+    const loading =
+    document.createElement("div");
+
+    loading.className =
+    "message ai thinking";
+
+    loading.textContent =
+    "Thinking...";
+
+    chat.appendChild(loading);
+
+    chat.scrollTop =
+    chat.scrollHeight;
+
+
+    try{
+
+        const response =
+        await fetch(API_URL,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":
+                "application/json"
+            },
+
+            body:
+            JSON.stringify({
+                message:text
+            })
+
+        });
+
+
+        const data =
+        await response.json();
+
+
+        loading.remove();
+
+
+        if(!response.ok){
+
+            let errorText =
+            data.error ||
+            "Something went wrong.";
+
+            if(data.details){
+
+                if(
+                    data.details.error &&
+                    data.details.error.message
+                ){
+
+                    errorText =
+                    data.details.error.message;
+
+                }
+
+            }
+
+            addMessage(
+                "Error: " + errorText,
+                "ai"
+            );
+
+        }else{
+
+            addMessage(
+                data.reply ||
+                "No response received.",
+                "ai"
+            );
+
+        }
+
+    }catch(error){
+
+        loading.remove();
+
+        addMessage(
+            "Connection error. Please try again.",
+            "ai"
+        );
+
+    }
+
+
+    send.disabled = false;
+
 }
 
-send.addEventListener("click", sendMessage);
 
-message.addEventListener("keydown", function(event) {
+/* ================= SEND BUTTON ================= */
 
-  if (event.key === "Enter" && !event.shiftKey) {
-    event.preventDefault();
-    sendMessage();
-  }
+send.addEventListener(
+    "click",
+    sendMessage
+);
 
-});
 
-newChat.addEventListener("click", function() {
+/* ================= ENTER KEY ================= */
 
-  chat.innerHTML = `
-    <div class="welcome">
-      <strong>Welcome to Tech Kutir AI</strong><br>
-      Ask me anything.
-    </div>
-  `;
+message.addEventListener(
+    "keydown",
+    function(event){
 
-  message.focus();
+        if(
+            event.key === "Enter" &&
+            !event.shiftKey
+        ){
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* ================= AUTO TEXTAREA SIZE ================= */
+
+message.addEventListener(
+    "input",
+    function(){
+
+        this.style.height =
+        "44px";
+
+        this.style.height =
+        Math.min(
+            this.scrollHeight,
+            130
+        ) + "px";
+
+    }
+);
+
+
+/* ================= NEW CHAT ================= */
+
+newChat.addEventListener(
+    "click",
+    function(){
+
+        chat.innerHTML = "";
+
+        welcome.scrollIntoView({
+            behavior:"smooth"
+        });
+
+        message.focus();
+
+    }
+);
+
+
+/* ================= QUICK ACTIONS ================= */
+
+document.querySelectorAll(
+    ".action-card"
+).forEach(function(card){
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            message.value =
+            card.dataset.prompt;
+
+            message.focus();
+
+            message.dispatchEvent(
+                new Event("input")
+            );
+
+        }
+    );
 
 });
 
