@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Kutir AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    .app {
+      max-width: 700px;
+      height: 100vh;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    header {
+      padding: 18px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .message {
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      max-width: 85%;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .user {
+      margin-left: auto;
+      background: #e8f0fe;
+    }
+
+    .ai {
+      margin-right: auto;
+      background: #f0f0f0;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 12px;
+      border-top: 1px solid #ddd;
+      gap: 8px;
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
+      height: 48px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 0 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #send {
+      background: #111;
+      color: white;
+    }
+
+    #newChat {
+      margin: 10px;
+      height: 40px;
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    TECH KUTIR AI
+  </header>
+
+  <button id="newChat">New Chat</button>
+
+  <div id="chat">
+    <div class="message ai">
+      Hello! I am Tech Kutir AI.
+      Ask me anything.
+    </div>
+  </div>
+
+  <div class="input-area">
+    <textarea id="message" placeholder="Type your message..."></textarea>
+    <button id="send">SEND</button>
+  </div>
+
+</div>
+
+<script>
+
+const chat = document.getElementById("chat");
+const message = document.getElementById("message");
+const send = document.getElementById("send");
+const newChat = document.getElementById("newChat");
+
+function addMessage(text, type) {
+
+  const div = document.createElement("div");
+
+  div.className = "message " + type;
+
+  div.textContent = text;
+
+  chat.appendChild(div);
+
+  chat.scrollTop = chat.scrollHeight;
+}
+
+send.addEventListener("click", function() {
+
+  const text = message.value.trim();
+
+  if (!text) return;
+
+  addMessage(text, "user");
+
+  message.value = "";
+
+  addMessage(
+    "Backend connection will be added in the next step.",
+    "ai"
+  );
+
+});
+
+newChat.addEventListener("click", function() {
+
+  chat.innerHTML = `
+    <div class="message ai">
+      New chat started.
+    </div>
+  `;
+
+});
+
+</script>
+
+</body>
+</html>
